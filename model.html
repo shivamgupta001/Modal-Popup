@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	.openmodal{
+		position : fixed;
+		top : 0px;
+		left : 0px;
+		right : 0px;
+		bottom : 0px;
+		opacity : 0;
+		pointer-events : none;
+		background-color : grey;
+	}
+	.openmodal:target{
+		opacity : 0.7;
+		pointer-events: auto;
+	}
+	.openmodal>div{
+		position : absolute;
+		top :50%;
+		left : 50%;
+		transform: translate(-50%, -50%);
+		z-index : 1000;
+		width : 400px;
+		height : 400px;
+		background-color : #DCDCDC;
+	}
+	a.overPopup+div{
+		display: none;
+		position: absolute;
+		top : 50%;
+		left : 50%;
+		transform : translate(-50% , -50%);
+		z-index: 100000;
+		background-color: yellow;
+		width : 500px;
+		height : 500px;
+	}
+	
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("a.overPopup").click(function(event){
+				var div1 = $(this).next();		
+				$(div1).css("display","block");
+			});
+			$("a.closeOverPopup").click(function(event){
+				$('.newPopup').css("display","none");
+			});
+		});
+	</script>
+</head>
+<body>
+<a href="#openModal">Open Modal Pop up</a>
+<div id="openModal" class="openmodal">
+	<div>
+		<a href="#close">X</a>
+		<div>
+			<a href="#openModal" class="overPopup">open new Modal</a>
+			<div class="newPopup">
+				<a href="#openModal" class="closeOverPopup">X</a>
+				<div>New popup classified strength beginner rapid growth kicker</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
